@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #070808;
+  color: #F4F5F6;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Scrollbar — institutional */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.3);
+}
+
+@layer components {
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(23, 25, 28, 0.92) 0%,
+      rgba(16, 18, 20, 0.92) 100%
+    );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  }
+  .glass-hover {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .glass-hover:hover {
+    border-color: rgba(16, 185, 129, 0.25);
+    box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.08), 0 4px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-1px);
+  }
+  .panel {
+    background: #101214;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .panel-elevated {
+    background: #1C1F23;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .label-eyebrow {
+    @apply text-[9px] font-semibold uppercase tracking-[0.18em] text-slate-soft/60;
+  }
+  .metric-value {
+    @apply font-mono font-semibold tabular-nums;
+  }
+  .panel-title {
+    @apply text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-soft/70;
+  }
+  .nav-item {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded-none text-[13px] font-medium text-slate-soft/60 transition-all duration-150 hover:text-white hover:bg-white/[0.03] border-l-2 border-transparent;
+  }
+  .nav-item-active {
+    @apply text-white bg-emerald-500/[0.06] border-l-2 border-emerald-500;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-none bg-emerald-600 hover:bg-emerald-500 text-white text-[13px] font-semibold transition-all duration-150;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-2 rounded-none bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.08] text-slate-soft text-[13px] font-medium transition-all duration-150;
+  }
+  .input-field {
+    @apply w-full bg-ink-panel border border-white/[0.06] rounded-none px-3 py-2 text-[13px] text-white placeholder:text-slate-soft/40 focus:outline-none focus:border-emerald-600/40 focus:ring-0 transition-all duration-150;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-1.5 py-0.5 rounded-none text-[9px] font-semibold uppercase tracking-wider;
+  }
+  .badge-pass {
+    @apply bg-emerald-500/10 text-emerald-300 border border-emerald-500/25;
+  }
+  .badge-warn {
+    @apply bg-amber-500/10 text-amber-300 border border-amber-500/25;
+  }
+  .badge-fail {
+    @apply bg-crimson-muted/20 text-crimson-soft border border-crimson/40;
+  }
+  .badge-neutral {
+    @apply bg-white/[0.04] text-slate-soft border border-white/[0.08];
+  }
+  .table-row {
+    @apply border-b border-white/[0.04] transition-colors duration-100 hover:bg-white/[0.02];
+  }
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 25%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.02) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  .glow-emerald {
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.15), inset 0 0 8px rgba(16, 185, 129, 0.04);
+  }
+  .text-glow {
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(16, 185, 129, 0.6); }
+  50% { opacity: 0.4; box-shadow: 0 0 8px rgba(16, 185, 129, 0.3); }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.count-up {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Recharts tooltip override — institutional */
+.recharts-default-tooltip {
+  background: rgba(16, 18, 20, 0.97) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0 !important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+.recharts-tooltip-label {
+  color: #8B929C !important;
+  font-size: 10px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.recharts-tooltip-item {
+  color: #F4F5F6 !important;
+  font-size: 12px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+.recharts-cartesian-axis-tick text {
+  fill: #8B929C !important;
+  font-size: 10px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+.recharts-cartesian-grid line {
+  stroke: rgba(255, 255, 255, 0.03) !important;
+}
+.recharts-cartesian-grid-horizontal line {
+  stroke: rgba(255, 255, 255, 0.03) !important;
+}
